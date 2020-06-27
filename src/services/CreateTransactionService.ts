@@ -15,7 +15,7 @@ class CreateTransactionService {
   }
 
   public execute({ title, value, type }: RequestDTO): Transaction {
-    // TODO OK?
+    // TODO
     const { total } = this.transactionsRepository.getBalance();
 
     if (type === 'outcome' && total < value) {

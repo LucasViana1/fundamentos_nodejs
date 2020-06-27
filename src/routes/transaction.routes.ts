@@ -9,7 +9,7 @@ const transactionsRepository = new TransactionsRepository();
 
 transactionRouter.get('/', (request, response) => {
   try {
-    // TODO OK?
+    // TODO
     const transactions = transactionsRepository.all();
     const balance = transactionsRepository.getBalance()
 
@@ -21,7 +21,7 @@ transactionRouter.get('/', (request, response) => {
 
 transactionRouter.post('/', (request, response) => {
   try {
-    // TODO OK?
+    // TODO
     const { title, value, type } = request.body;
 
     const createTransactionService = new CreateTransactionService(transactionsRepository);

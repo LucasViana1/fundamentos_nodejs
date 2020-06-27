@@ -26,12 +26,12 @@ class TransactionsRepository {
   }
 
   public all(): Transaction[] {
-    // TODO OK?
+    // TODO
     return this.transactions
   }
 
   public getBalance(): Balance {
-    // TODO OK?
+    // TODO
     const { income, outcome } = this.transactions.reduce((accumulator: Balance, transaction: Transaction) => {
       switch (transaction.type) {
         case 'income':
@@ -49,7 +49,7 @@ class TransactionsRepository {
   }
 
   public create({ title, value, type }: CreateTransactionsDTO): Transaction {
-    // TODO OK?
+    // TODO
     // instancia objeto que representa uma nova transação
     const transaction = new Transaction({ title, value, type });
     // adiciona a transação criada no array de transações
