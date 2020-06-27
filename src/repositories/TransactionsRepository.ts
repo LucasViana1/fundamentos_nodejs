@@ -6,6 +6,18 @@ interface Balance {
   total: number;
 }
 
+interface CreateTransactionsDTO {
+  title: string;
+  value: number;
+  type: 'income' | 'outcome';
+}
+
+interface CreateBalanceDTO {
+  income: number;
+  outcome: number;
+  total: number;
+}
+
 class TransactionsRepository {
   private transactions: Transaction[];
 
@@ -14,15 +26,36 @@ class TransactionsRepository {
   }
 
   public all(): Transaction[] {
-    // TODO
+    // TODO OK?
+    return this.transactions
   }
 
   public getBalance(): Balance {
-    // TODO
+    // TODO OK?
+    const { income, outcome } = this.transactions.reduce((accumulator: Balance, transaction: Transaction) => {
+      switch (transaction.type) {
+        case 'income':
+          accumulator.income += transaction.value; break;
+        case 'outcome':
+          accumulator.outcome += transaction.value; break;
+        default: break;
+      }
+      return accumulator;
+    }, { income: 0, outcome: 0, total: 0 })
+
+    const total = income - outcome;
+
+    return { income, outcome, total }
   }
 
-  public create(): Transaction {
-    // TODO
+  public create({ title, value, type }: CreateTransactionsDTO): Transaction {
+    // TODO OK?
+    // instancia objeto que representa uma nova transação
+    const transaction = new Transaction({ title, value, type });
+    // adiciona a transação criada no array de transações
+    this.transactions.push(transaction);
+
+    return transaction;
   }
 }
 
